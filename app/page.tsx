@@ -8,9 +8,12 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-bg">
+    <main id="main-content" className="relative min-h-screen bg-bg">
       {/* Warm gradient blobs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      <div
+        className="fixed inset-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
         <div
           className="absolute rounded-full opacity-30 blur-3xl"
           style={{

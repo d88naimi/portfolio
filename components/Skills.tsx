@@ -56,6 +56,27 @@ const education: Array<{ school: string; program: string; period?: string }> = [
   },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "It was great working alongside David on the same team. He’s an approachable and thoughtful engineer who’s always pushing himself to keep learning and sharpening his skills. I really appreciated the way he consistently asked insightful questions and approached problems with a mindset of curiosity. He was always willing to help when I needed to bounce around ideas, and he brought thoughtful suggestions to improve our team’s workflow. David is not only a strong engineer but also a great collaborator, and any team would be lucky to have him onboard.",
+    author: "Jessica Davilla, Senior Software Engineer",
+    role: "Method",
+  },
+  {
+    quote:
+      "Patient, communicative, respected and good character all come to mind when I think of David. It has been an absolute pleasure working with David directly as both a student and instructional assistant over the past year. David excelled as a student in our part-time web development bootcamp program and transitioned into a reliable, knowledgeable and respected TA for our students in our full-time web development program. I feel very lucky to have witnessed and been apart of David's evolution from a student learner to teacher. David exudes confidence and is always willing to go the extra mile for the greater good. David is simply one of the good ones and he made managing him a breeze. I look forward to finding additional ways for us to continue to work together in the future.",
+    author: "Eric Johnson, Program Manager",
+    role: "UCSD Extension ",
+  },
+  {
+    quote:
+      "I had the pleasure to work with David on our app. We had to refactor some features and get our app ready for the App Store Submission. David has been able to quickly master a complex pipeline and to refactor large portions of code He is a self-starter, a hard worker and a leader. Anyone would be lucky to have him on their team!",
+    author: "Jerome Lacote, Entrepreneur Developer",
+    role: "Victorise",
+  },
+];
+
 export default function Skills() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -139,6 +160,30 @@ export default function Skills() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Testimonial */}
+      <div
+        className={`bg-surface border border-border p-7 shadow-sm transition-all duration-700 delay-[450ms] mb-6 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <div className="section-label mb-5">Testimonial</div>
+        {testimonials.map((t) => (
+          <figure
+            key={`${t.author}-${t.role}`}
+            className="border border-border bg-bg2 p-6"
+          >
+            <blockquote className="font-sans text-sm text-text/75 leading-relaxed italic">
+              “{t.quote}”
+            </blockquote>
+            <figcaption className="mt-4 font-sans text-xs text-muted">
+              <span className="text-accent">{t.author}</span>
+              {" · "}
+              {t.role}
+            </figcaption>
+          </figure>
+        ))}
       </div>
 
       {/* Certs */}

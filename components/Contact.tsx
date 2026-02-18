@@ -26,6 +26,9 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="relative py-32 px-6">
+      <p className="sr-only" role="status" aria-live="polite">
+        {copied ? "Email copied to clipboard" : ""}
+      </p>
       <div className="max-w-3xl mx-auto">
         {/* Decorative top rule */}
         <div className="flex items-center gap-4 mb-16">

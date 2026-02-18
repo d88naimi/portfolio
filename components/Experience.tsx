@@ -15,7 +15,14 @@ const experiences = [
       "Wrote and maintained integration/unit tests using Playwright, reducing regressions",
       "Monitored application health via Datadog and Sentry, proactively resolving production issues",
     ],
-    stack: ["React", "Next.js", "TypeScript", "Zustand", "Tailwind CSS", "Playwright"],
+    stack: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Zustand",
+      "Tailwind CSS",
+      "Playwright",
+    ],
   },
   {
     company: "Zesty.io",
@@ -65,8 +72,10 @@ export default function Experience() {
 
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
+      ([e]) => {
+        if (e.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 },
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -81,7 +90,9 @@ export default function Experience() {
       className="relative py-32 px-6 max-w-6xl mx-auto"
     >
       {/* Section header */}
-      <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         <div className="section-label mb-3">Experience</div>
         <h2 className="font-display text-4xl md:text-5xl text-text">
           Where I&apos;ve <em className="text-accent">worked</em>
@@ -89,13 +100,24 @@ export default function Experience() {
         <div className="mt-4 w-10 h-0.5 bg-accent2" />
       </div>
 
-      <div className={`flex flex-col lg:flex-row gap-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`flex flex-col lg:flex-row gap-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         {/* Company tabs */}
-        <div className="flex lg:flex-col gap-0 overflow-x-auto lg:overflow-x-visible min-w-0 lg:min-w-[180px]">
+        <div
+          className="flex lg:flex-col gap-0 overflow-x-auto lg:overflow-x-visible min-w-0 lg:min-w-[180px]"
+          role="tablist"
+          aria-label="Experience companies"
+        >
           {experiences.map((e, i) => (
             <button
               key={e.company}
               onClick={() => setActive(i)}
+              role="tab"
+              aria-selected={active === i}
+              aria-controls={`experience-panel-${i}`}
+              id={`experience-tab-${i}`}
+              type="button"
               className={`flex-shrink-0 text-left px-5 py-3.5 font-sans text-sm border-b-2 lg:border-b-0 lg:border-l-2 transition-all duration-200 ${
                 active === i
                   ? "text-accent border-accent bg-accent-light/30"
@@ -108,10 +130,17 @@ export default function Experience() {
         </div>
 
         {/* Content panel */}
-        <div className="flex-1 bg-surface/80 border border-border p-8 rounded-sm shadow-sm">
+        <div
+          className="flex-1 bg-surface/80 border border-border p-8 rounded-sm shadow-sm"
+          role="tabpanel"
+          id={`experience-panel-${active}`}
+          aria-labelledby={`experience-tab-${active}`}
+        >
           <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
             <div>
-              <h3 className="font-display text-xl text-text mb-1">{exp.role}</h3>
+              <h3 className="font-display text-xl text-text mb-1">
+                {exp.role}
+              </h3>
               <p className="font-sans text-sm text-accent font-medium">
                 {exp.company} · {exp.location}
               </p>
@@ -123,7 +152,10 @@ export default function Experience() {
 
           <ul className="space-y-3 mb-8">
             {exp.highlights.map((h, i) => (
-              <li key={i} className="flex gap-3 text-sm text-text/75 leading-relaxed">
+              <li
+                key={i}
+                className="flex gap-3 text-sm text-text/75 leading-relaxed"
+              >
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent2 shrink-0" />
                 {h}
               </li>
@@ -132,7 +164,9 @@ export default function Experience() {
 
           <div className="flex flex-wrap gap-2 pt-6 border-t border-border">
             {exp.stack.map((s) => (
-              <span key={s} className="tag">{s}</span>
+              <span key={s} className="tag">
+                {s}
+              </span>
             ))}
           </div>
         </div>
@@ -140,4 +174,3 @@ export default function Experience() {
     </section>
   );
 }
-

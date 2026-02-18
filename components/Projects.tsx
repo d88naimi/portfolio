@@ -146,14 +146,16 @@ export default function Projects() {
                       GitHub ↗
                     </a>
                   )}
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-sans text-xs text-muted hover:text-accent transition-colors warm-underline"
-                  >
-                    Live site ↗
-                  </a>
+                  {p.link && p.link !== "#" && (
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-xs text-muted hover:text-accent transition-colors warm-underline"
+                    >
+                      Live site ↗
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

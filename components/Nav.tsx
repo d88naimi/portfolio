@@ -26,7 +26,10 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <nav
+        className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between"
+        aria-label="Primary"
+      >
         <a href="#" className="font-display text-xl text-accent italic">
           David Naimi
         </a>
@@ -41,7 +44,12 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href="/resume.pdf" className="btn-primary" target="_blank" rel="noopener noreferrer">
+          <a
+            href="/resume.pdf"
+            className="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span>Resume</span>
           </a>
         </div>
@@ -50,21 +58,49 @@ export default function Nav() {
           className="md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav-menu"
+          aria-haspopup="menu"
+          type="button"
         >
-          <span className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`block w-5 h-px bg-text transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          <span
+            className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
+          />
+          <span
+            className={`block w-5 h-px bg-text transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+          />
         </button>
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden bg-surface/95 backdrop-blur-md border-b border-border px-6 py-6 flex flex-col gap-5">
+        <div
+          id="mobile-nav-menu"
+          className="md:hidden bg-surface/95 backdrop-blur-md border-b border-border px-6 py-6 flex flex-col gap-5"
+          role="menu"
+        >
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="font-sans text-sm text-muted hover:text-accent transition-colors" onClick={() => setMenuOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className="font-sans text-sm text-muted hover:text-accent transition-colors"
+              onClick={() => setMenuOpen(false)}
+              role="menuitem"
+            >
               {l.label}
             </a>
           ))}
-          <a href="/resume.pdf" className="btn-primary text-center" target="_blank" rel="noopener noreferrer"><span>Resume</span></a>
+          <a
+            href="/resume.pdf"
+            className="btn-primary text-center"
+            target="_blank"
+            rel="noopener noreferrer"
+            role="menuitem"
+          >
+            <span>Resume</span>
+          </a>
         </div>
       )}
     </header>

@@ -46,6 +46,7 @@ export default function Hero() {
       {/* Decorative circle */}
       <div
         className="absolute pointer-events-none"
+        aria-hidden="true"
         style={{
           width: 480,
           height: 480,
@@ -58,6 +59,7 @@ export default function Hero() {
       />
       <div
         className="absolute pointer-events-none hidden sm:block"
+        aria-hidden="true"
         style={{
           width: 680,
           height: 680,
@@ -90,7 +92,10 @@ export default function Hero() {
 
       {/* Typewriter subtitle */}
       <div className="h-8 flex items-center justify-center mb-7">
-        <span className="font-sans text-base md:text-lg text-muted">
+        <span
+          className="font-sans text-base md:text-lg text-muted"
+          aria-live="polite"
+        >
           {displayed}
           <span className="text-accent animate-pulse">|</span>
         </span>
@@ -136,7 +141,10 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        aria-hidden="true"
+      >
         <div className="w-px h-10 bg-gradient-to-b from-accent/40 to-transparent animate-bounce" />
       </div>
     </section>
