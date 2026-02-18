@@ -1,6 +1,6 @@
 # David Naimi — Portfolio
 
-A techy, futuristic personal portfolio built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Designed for one-click Vercel deployment.
+A techy, futuristic personal portfolio built with **Next.js 16**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Designed for one-click Vercel deployment.
 
 ---
 
@@ -42,6 +42,7 @@ npm run dev
 ## ✏️ Customization
 
 ### Add your projects
+
 Edit `components/Projects.tsx` — update the `projects` array at the top:
 
 ```ts
@@ -51,7 +52,7 @@ const projects = [
     title: "Your Project Name",
     description: "What it does and why it matters.",
     stack: ["React", "Next.js", "TypeScript"],
-    status: "Production",         // "Production" | "Shipped" | "Coming Soon"
+    status: "Production", // "Production" | "Shipped" | "Coming Soon"
     link: "https://your-live-url.com",
     github: "https://github.com/d88naimi/your-repo",
     featured: true,
@@ -61,9 +62,11 @@ const projects = [
 ```
 
 ### Add your resume PDF
+
 Drop your `resume.pdf` file into the `/public` folder. The "Resume" button in the nav will link to it automatically.
 
 ### Update contact info
+
 If anything changes, update `components/Contact.tsx` and `components/Footer.tsx`.
 
 ---
@@ -71,12 +74,14 @@ If anything changes, update `components/Contact.tsx` and `components/Footer.tsx`
 ## 🌐 Deploy to Vercel
 
 ### Option 1: Vercel CLI
+
 ```bash
 npm i -g vercel
 vercel
 ```
 
 ### Option 2: GitHub + Vercel Dashboard (Recommended)
+
 1. Push this project to a GitHub repo
 2. Go to [vercel.com/new](https://vercel.com/new)
 3. Import your GitHub repo
@@ -84,6 +89,7 @@ vercel
 5. Every push to `main` auto-deploys ✓
 
 ### Option 3: One-click from GitHub
+
 - Connect your GitHub account on Vercel
 - Every `git push origin main` triggers a new deployment
 
@@ -91,20 +97,20 @@ vercel
 
 ## 🎨 Design System
 
-| Token | Value |
-|-------|-------|
-| `--bg` | `#050810` — deep space black |
-| `--accent` | `#00f0ff` — electric cyan |
-| `--accent2` | `#7b2fff` — electric violet |
-| Font Display | Orbitron |
-| Font Mono | Space Mono |
-| Font Body | DM Sans |
+| Token        | Value                        |
+| ------------ | ---------------------------- |
+| `--bg`       | `#050810` — deep space black |
+| `--accent`   | `#00f0ff` — electric cyan    |
+| `--accent2`  | `#7b2fff` — electric violet  |
+| Font Display | Orbitron                     |
+| Font Mono    | Space Mono                   |
+| Font Body    | DM Sans                      |
 
 ---
 
 ## 📦 Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animation**: CSS + Framer Motion
