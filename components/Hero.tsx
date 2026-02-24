@@ -95,9 +95,12 @@ export default function Hero() {
         <span
           className="font-sans text-base md:text-lg text-muted"
           aria-live="polite"
+          aria-atomic="true"
         >
           {displayed}
-          <span className="text-accent animate-pulse">|</span>
+          <span className="text-accent animate-pulse" aria-hidden="true">
+            |
+          </span>
         </span>
       </div>
 
@@ -122,7 +125,7 @@ export default function Hero() {
       </div>
 
       {/* Stats */}
-      <div className="flex flex-wrap gap-8 md:gap-20 justify-center">
+      <dl className="flex flex-wrap gap-8 md:gap-20 justify-center">
         {[
           { value: "7+", label: "Years Experience" },
           { value: "3,500+", label: "Locations Shipped" },
@@ -130,15 +133,15 @@ export default function Hero() {
           { value: "100", label: "NPS Score" },
         ].map((s) => (
           <div key={s.label} className="flex flex-col items-center gap-1.5">
-            <span className="font-display text-3xl md:text-4xl text-accent italic">
+            <dd className="font-display text-3xl md:text-4xl text-accent italic">
               {s.value}
-            </span>
-            <span className="font-sans text-xs text-muted tracking-wider uppercase">
+            </dd>
+            <dt className="font-sans text-xs text-muted tracking-wider uppercase">
               {s.label}
-            </span>
+            </dt>
           </div>
         ))}
-      </div>
+      </dl>
 
       {/* Scroll cue */}
       <div

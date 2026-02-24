@@ -29,7 +29,16 @@ const skillGroups = [
       { name: "Redux" },
       { name: "useSWR / Axios" },
       { name: "REST APIs" },
+    ],
+  },
+  {
+    label: "Backend & Platforms",
+    skills: [
       { name: "Node.js / Express" },
+      { name: "Supabase" },
+      { name: "Sanity CMS" },
+      { name: "PostgreSQL" },
+      { name: "Vercel" },
     ],
   },
   {
@@ -40,6 +49,16 @@ const skillGroups = [
       { name: "Datadog / Sentry" },
       { name: "Git / Bitbucket" },
       { name: "Figma" },
+    ],
+  },
+  {
+    label: "AI & Emerging Tech",
+    skills: [
+      { name: "OpenAI API" },
+      { name: "Prompt Engineering" },
+      { name: "Claude" },
+      { name: "GitHub Copilot" },
+      { name: "AI-Assisted Development" },
     ],
   },
 ];
@@ -108,7 +127,7 @@ export default function Skills() {
         <div className="mt-4 w-10 h-0.5 bg-accent2" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
         {skillGroups.map((group, gi) => (
           <div
             key={group.label}
@@ -168,22 +187,23 @@ export default function Skills() {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <div className="section-label mb-5">Testimonial</div>
-        {testimonials.map((t) => (
-          <figure
-            key={`${t.author}-${t.role}`}
-            className="border border-border bg-bg2 p-6"
-          >
-            <blockquote className="font-sans text-sm text-text/75 leading-relaxed italic">
-              “{t.quote}”
-            </blockquote>
-            <figcaption className="mt-4 font-sans text-xs text-muted">
-              <span className="text-accent">{t.author}</span>
-              {" · "}
-              {t.role}
-            </figcaption>
-          </figure>
-        ))}
+        <div className="section-label mb-5">Testimonials</div>
+        <ul className="space-y-4" aria-label="Colleague testimonials">
+          {testimonials.map((t) => (
+            <li key={`${t.author}-${t.role}`}>
+              <figure className="border border-border bg-bg2 p-6">
+                <blockquote className="font-sans text-sm text-text/75 leading-relaxed italic">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-4 font-sans text-xs text-muted">
+                  <span className="text-accent">{t.author}</span>
+                  {" · "}
+                  {t.role}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Certs */}

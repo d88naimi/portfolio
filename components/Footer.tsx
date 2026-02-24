@@ -22,6 +22,7 @@ export default function Footer() {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${l.label} (opens in new tab)`}
               className="font-sans text-xs text-muted hover:text-accent transition-colors warm-underline"
             >
               {l.label}

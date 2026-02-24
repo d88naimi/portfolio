@@ -39,6 +39,41 @@ const projects = [
     link: "https://knowledge-sharing-app-gold.vercel.app/",
     github: "https://github.com/d88naimi/knowledge-sharing-app",
   },
+  {
+    id: "04",
+    title: "Encinitas Coast Highway Flowers",
+    description:
+      "A production-ready florist website built with Next.js 16, TypeScript, Tailwind CSS, and Sanity CMS, featuring owner-editable content, image-heavy product showcases, and responsive, accessibility-focused UI.",
+    stack: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Sanity CMS",
+      "Swiper",
+      "Vercel",
+    ],
+    status: "Production",
+    link: "https://www.encinitascoastflowers.com/",
+    github:
+      "https://github.com/Encinitas-Coast-Highway-Flowers/encinitas-flowers",
+  },
+  {
+    id: "05",
+    title: "Sunset Portfolio – David Naimi",
+    description:
+      "A personal portfolio website showcasing work experience, projects, skills, and testimonials. Built with React and powered by a JSON data source, it features sections for About, Portfolio, Resume, and Testimonials with smooth animations and Google Analytics integration.",
+    stack: [
+      "React",
+      "JavaScript",
+      "jQuery",
+      "CSS3",
+      "Google Analytics (ReactGA)",
+      "GitHub Pages",
+    ],
+    status: "Deployed",
+    link: "https://d88naimi.github.io/davidnaimi/",
+    github: "https://github.com/d88naimi/davidnaimi",
+  },
 ];
 
 const statusColors: Record<string, string> = {
@@ -86,7 +121,7 @@ export default function Projects() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p, i) => (
-            <div
+            <article
               key={p.id}
               className={`group bg-surface border border-border hover:border-accent/30 hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${
                 visible
@@ -94,6 +129,7 @@ export default function Projects() {
                   : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 100 + 200}ms` }}
+              aria-label={p.title}
             >
               {/* Top color strip */}
               <div
@@ -106,7 +142,10 @@ export default function Projects() {
 
               <div className="p-7">
                 <div className="flex items-center justify-between mb-5">
-                  <span className="font-display text-4xl text-border italic">
+                  <span
+                    className="font-display text-4xl text-border italic"
+                    aria-hidden="true"
+                  >
                     {p.id}
                   </span>
                   <span
@@ -141,9 +180,10 @@ export default function Projects() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${p.title} source code on GitHub (opens in new tab)`}
                       className="font-sans text-xs text-muted hover:text-accent transition-colors warm-underline"
                     >
-                      GitHub ↗
+                      GitHub <span aria-hidden="true">↗</span>
                     </a>
                   )}
                   {p.link && p.link !== "#" && (
@@ -151,14 +191,15 @@ export default function Projects() {
                       href={p.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${p.title} live site (opens in new tab)`}
                       className="font-sans text-xs text-muted hover:text-accent transition-colors warm-underline"
                     >
-                      Live site ↗
+                      Live site <span aria-hidden="true">↗</span>
                     </a>
                   )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

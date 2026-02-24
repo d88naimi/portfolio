@@ -83,6 +83,11 @@ export default function Contact() {
               target={c.external ? "_blank" : undefined}
               rel={c.external ? "noopener noreferrer" : undefined}
               onClick={c.onClick}
+              aria-label={
+                c.external
+                  ? `${c.label}: ${c.value} (opens in new tab)`
+                  : `${c.label}: ${c.value}. Click to copy email address.`
+              }
               className="block bg-surface border border-border p-6 hover:border-accent/40 hover:shadow-sm transition-all duration-200 group text-center"
             >
               <div className="section-label mb-2 group-hover:text-accent transition-colors">
@@ -91,7 +96,10 @@ export default function Contact() {
               <div className="font-sans text-sm text-text/70 mb-2 break-all">
                 {c.value}
               </div>
-              <div className="font-sans text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+              <div
+                className="font-sans text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-hidden="true"
+              >
                 {c.note}
               </div>
             </a>

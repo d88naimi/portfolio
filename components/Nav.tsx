@@ -18,6 +18,14 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menuOpen) setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -80,6 +88,7 @@ export default function Nav() {
           id="mobile-nav-menu"
           className="md:hidden bg-surface/95 backdrop-blur-md border-b border-border px-6 py-6 flex flex-col gap-5"
           role="menu"
+          aria-label="Mobile navigation"
         >
           {links.map((l) => (
             <a
