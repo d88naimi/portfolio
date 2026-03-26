@@ -52,6 +52,18 @@ const experiences = [
     stack: ["JavaScript", "jQuery", "SASS", "Ruby", "Haml", "Foundation"],
   },
   {
+    company: "Victorise",
+    role: "Software Engineer Internship",
+    period: "September 2017 – December 2017",
+    location: "Carlsbad, CA",
+    highlights: [
+      "Engineered an app cache-clearing feature in Ionic, improving app stability and reducing stale-data issues reported by end users",
+      "Partnered with senior engineers to architect and implement core functionality protocols, contributing to technical decision-making and accelerating feature delivery across the team",
+      "Worked with peer development team on analysis, design, and implementation of mobile web app using Angular and Ionic",
+    ],
+    stack: ["Ionic", "Angular", "JavaScript"],
+  },
+  {
     company: "UCSD Bootcamp",
     role: "Associate Instructor",
     period: "Dec 2017 — Aug 2020",
