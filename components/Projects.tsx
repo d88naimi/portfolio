@@ -80,6 +80,16 @@ const projects = [
     link: "https://reactstudyguide.vercel.app/",
     github: "https://github.com/d88naimi/react-interview-prep",
   },
+  {
+    id: "06",
+    title: "PDF to Markdown",
+    description:
+      "A clean, intuitive tool to convert any PDF into Markdown instantly. Features drag & drop upload, live preview, one-click copy, and .md file download — all in one place.",
+    stack: ["Next.js", "TypeScript", "unpdf", "Tailwind CSS", "Vercel"],
+    status: "Production",
+    link: "https://pdf-to-markdown-roan.vercel.app/",
+    github: "#",
+  },
 ];
 
 const statusColors: Record<string, string> = {
