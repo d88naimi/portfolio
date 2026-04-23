@@ -4,6 +4,16 @@ import { useEffect, useRef, useState } from "react";
 const projects = [
   {
     id: "01",
+    title: "VehicleIQ — AI-Powered Vehicle Research",
+    description:
+      "AI-powered vehicle research and comparison tool. Search any car, get AI-curated YouTube reviews and articles, compare up to 3 vehicles side-by-side, and generate service quotes from symptom descriptions — all with streaming Claude-powered chat and PDF export.",
+    stack: ["React", "Next.js", "TypeScript", "Tailwind", "Anthropic Claude"],
+    status: "Production",
+    link: "https://drivra.vercel.app/",
+    github: "https://github.com/d88naimi/vehicle-research",
+  },
+  {
+    id: "02",
     title: "Mavis Check-In Dashboard",
     description:
       "Customer check-in platform deployed across 3,500+ Mavis Discount Tire locations. Built with React, Next.js, and Zustand — reduced check-in time by 64%.",
@@ -13,7 +23,7 @@ const projects = [
     github: "#",
   },
   {
-    id: "02",
+    id: "03",
     title: "Duo Mode — Zesty.io",
     description:
       "Major product feature for Zesty.io CMS allowing dual content management views. Led end-to-end from wireframes through production release.",
@@ -23,7 +33,7 @@ const projects = [
     github: "#",
   },
   {
-    id: "03",
+    id: "04",
     title: "Knowledge Hub",
     description:
       "A full-stack web application built with Next.js 16, TypeScript, Tailwind CSS, NextAuth.js, and Supabase for sharing knowledge through articles, code snippets, and learning resources.",
@@ -40,7 +50,7 @@ const projects = [
     github: "https://github.com/d88naimi/knowledge-sharing-app",
   },
   {
-    id: "04",
+    id: "05",
     title: "Encinitas Coast Highway Flowers",
     description:
       "A production-ready florist website built with Next.js 16, TypeScript, Tailwind CSS, and Sanity CMS, featuring owner-editable content, image-heavy product showcases, and responsive, accessibility-focused UI.",
@@ -58,7 +68,7 @@ const projects = [
       "https://github.com/Encinitas-Coast-Highway-Flowers/encinitas-flowers",
   },
   {
-    id: "05",
+    id: "06",
     title: "React Senior Engineer Study Guide",
     description:
       "An interactive study app covering 13 core React pattern categories to prepare for senior-level frontend interviews. Features live working examples for component patterns, state management, performance optimization, API integration, forms, list rendering, routing, responsive design, animations, error handling, accessibility, testing, and frontend system design.",
@@ -81,7 +91,7 @@ const projects = [
     github: "https://github.com/d88naimi/react-interview-prep",
   },
   {
-    id: "06",
+    id: "07",
     title: "PDF to Markdown",
     description:
       "A clean, intuitive tool to convert any PDF into Markdown instantly. Features drag & drop upload, live preview, one-click copy, and .md file download — all in one place.",
