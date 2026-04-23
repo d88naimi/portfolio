@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "David Naimi — Senior Frontend Engineer",
+  title: "David Naimi — Senior Engineer - AI Engineer",
   description:
-    "Senior Frontend Software Engineer with 7+ years of experience building scalable, high-performance web applications.",
+    "Senior Software Engineer & AI Engineer with 7+ years of experience building scalable, high-performance web applications.",
   openGraph: {
-    title: "David Naimi — Senior Frontend Engineer",
+    title: "David Naimi — Senior Engineer - AI Engineer",
     description: "React • TypeScript • Next.js",
     type: "website",
   },
