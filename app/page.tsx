@@ -1,48 +1,30 @@
+// app/page.tsx
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import ImpactStrip from "@/components/ImpactStrip";
+import SelectedWork from "@/components/SelectedWork";
 import Experience from "@/components/Experience";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
+import Consulting from "@/components/Consulting";
+import Capabilities from "@/components/Capabilities";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main id="main-content" className="relative min-h-screen bg-bg">
-      {/* Warm gradient blobs */}
-      <div
-        className="fixed inset-0 pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute rounded-full opacity-30 blur-3xl"
-          style={{
-            width: 700,
-            height: 700,
-            top: "-15%",
-            right: "-15%",
-            background: "radial-gradient(circle, #f2d4bf 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute rounded-full opacity-20 blur-3xl"
-          style={{
-            width: 500,
-            height: 500,
-            bottom: "10%",
-            left: "-10%",
-            background: "radial-gradient(circle, #e8d5bf 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
+    <div className="relative min-h-screen overflow-x-hidden bg-bg">
       <Nav />
-      <Hero />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <ImpactStrip />
+        <SelectedWork />
+        <Experience />
+        <Consulting />
+        <Capabilities />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
