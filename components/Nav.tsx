@@ -44,7 +44,7 @@ export default function Nav() {
           aria-label="Primary"
           className="flex items-center justify-between px-8"
         >
-          <a href="#hero" className="text-base font-semibold tracking-[-0.01em] text-text">
+          <a href="#hero" className="text-base font-semibold tracking-[-0.01em] text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4">
             David Naimi
           </a>
 
@@ -96,7 +96,7 @@ export default function Nav() {
               href={link.href}
               role="menuitem"
               onClick={() => setMenuOpen(false)}
-              className="text-[28px] font-semibold tracking-[-0.02em] text-text"
+              className="text-[28px] font-semibold tracking-[-0.02em] text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4"
             >
               {link.label}
             </a>
@@ -107,7 +107,7 @@ export default function Nav() {
             rel="noopener noreferrer"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
-            className="mt-3 rounded-pill border border-hairline px-6 py-3 text-[15px] text-text"
+            className="mt-3 rounded-pill border border-hairline px-6 py-3 text-[15px] text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4"
           >
             Resume
           </Link>
