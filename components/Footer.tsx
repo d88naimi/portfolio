@@ -13,7 +13,7 @@ export default function Footer() {
             href="https://linkedin.com/in/davidnaimi"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text"
+            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             LinkedIn
           </a>
@@ -21,7 +21,7 @@ export default function Footer() {
             href="https://github.com/d88naimi"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text"
+            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             GitHub
           </a>
@@ -29,7 +29,7 @@ export default function Footer() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text"
+            className="text-[13px] text-muted2 transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Resume
           </Link>
