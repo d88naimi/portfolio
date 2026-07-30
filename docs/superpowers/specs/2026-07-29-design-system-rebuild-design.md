@@ -72,7 +72,8 @@ All entrance animations: IntersectionObserver, threshold 0.15-0.2, fire once (di
 One shared layout, `generateStaticParams` from `case-studies.ts` keys. Sticky header (back link, "Case study" label) → hero (tag/title/summary/links) → full-width hero image → optional 4-up quick-metrics (Mavis only) → Problem → Approach → What I built → Outcome → "Back to selected work" CTA. Each section fades up on scroll entry (24px translate, 700ms, cubic-bezier(0.16,1,0.3,1), once).
 
 ### Assets
-- Copy the 8 screenshots from the handoff `screenshots/` folder into `public/` (or `public/images/`) and wire them in as real `next/image` usage: `portfolio-01-hero.png` through `-06-final.png` for in-page reference/OG use as applicable, `case-study-mavis.png` and `case-study-vehicleiq.png` as the case study hero images (replacing the `<image-slot>` placeholders from the prototype).
+- The handoff `screenshots/` folder contains captures of the *prototype itself* (e.g. `case-study-mavis.png` shows the prototype's empty `<image-slot>` placeholder, not a real product screenshot) — these are reference-only for recreating the design, not assets to embed in the live site.
+- Case study hero image areas render a styled empty placeholder (rounded `var(--surface)` box, hairline border, matching the prototype's `<image-slot>` sizing/position) until real product screenshots are supplied.
 - Reuse existing `public/resume.pdf` for Resume nav pill + Contact card link.
 - Regenerate or reuse `og-image.png` for Open Graph metadata.
 
