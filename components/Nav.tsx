@@ -1,10 +1,13 @@
+// components/Nav.tsx
 "use client";
-import { useState, useEffect } from "react";
 
-const links = [
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const LINKS = [
+  { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
+  { href: "#consulting", label: "Consulting" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -13,103 +16,109 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
+    if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && menuOpen) setMenuOpen(false);
+      if (e.key === "Escape") setMenuOpen(false);
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-bg/90 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <nav
-        className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between"
-        aria-label="Primary"
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={`mx-auto max-w-[1200px] border-b transition-[background,border-color,padding] duration-300 ease-[var(--ease-hover)] ${
+          scrolled
+            ? "bg-[rgba(10,10,10,0.72)] backdrop-blur-[20px] border-hairline py-3.5"
+            : "bg-transparent border-transparent py-[22px]"
+        }`}
       >
-        <a href="#" className="font-display text-xl text-accent italic">
-          David Naimi
-        </a>
-
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-sans text-sm text-muted hover:text-accent transition-colors duration-200 warm-underline"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="/resume.pdf"
-            className="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>Resume</span>
-          </a>
-        </div>
-
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav-menu"
-          aria-haspopup="menu"
-          type="button"
+        <nav
+          aria-label="Primary"
+          className="flex items-center justify-between px-8"
         >
-          <span
-            className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
-          />
-          <span
-            className={`block w-5 h-px bg-text transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
-          />
-          <span
-            className={`block w-5 h-px bg-text transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
-          />
-        </button>
-      </nav>
+          <a href="#hero" className="text-base font-semibold tracking-[-0.01em] text-text">
+            David Naimi
+          </a>
+
+          <div className="hidden md:flex items-center gap-9">
+            {LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted transition-colors duration-200 ease-[var(--ease-hover)] hover:text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4"
+              >
+                {link.label}
+              </a>
+            ))}
+            <Link
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-pill border border-hairline px-[18px] py-[9px] text-[13px] text-text transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/30 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            >
+              Resume
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="md:hidden p-2 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          >
+            <span className="block h-px w-5 bg-text" />
+            <span className="my-[5px] block h-px w-5 bg-text" />
+            <span className="block h-px w-5 bg-text" />
+          </button>
+        </nav>
+      </div>
 
       {menuOpen && (
         <div
-          id="mobile-nav-menu"
-          className="md:hidden bg-surface/95 backdrop-blur-md border-b border-border px-6 py-6 flex flex-col gap-5"
+          id="mobile-menu"
           role="menu"
           aria-label="Mobile navigation"
+          className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 bg-[rgba(0,0,0,0.97)] backdrop-blur-[20px]"
         >
-          {links.map((l) => (
+          {LINKS.map((link) => (
             <a
-              key={l.href}
-              href={l.href}
-              className="font-sans text-sm text-muted hover:text-accent transition-colors"
-              onClick={() => setMenuOpen(false)}
+              key={link.href}
+              href={link.href}
               role="menuitem"
+              onClick={() => setMenuOpen(false)}
+              className="text-[28px] font-semibold tracking-[-0.02em] text-text"
             >
-              {l.label}
+              {link.label}
             </a>
           ))}
-          <a
+          <Link
             href="/resume.pdf"
-            className="btn-primary text-center"
             target="_blank"
             rel="noopener noreferrer"
             role="menuitem"
+            onClick={() => setMenuOpen(false)}
+            className="mt-3 rounded-pill border border-hairline px-6 py-3 text-[15px] text-text"
           >
-            <span>Resume</span>
-          </a>
+            Resume
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="absolute right-6 top-6 p-2 text-[28px] text-text focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          >
+            &#10005;
+          </button>
         </div>
       )}
     </header>
