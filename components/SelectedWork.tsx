@@ -19,7 +19,7 @@ export default function SelectedWork() {
         {featuredProjects.map((project) => (
           <div
             key={project.slug}
-            className="sticky top-0 flex h-screen items-center overflow-hidden bg-bg"
+            className="flex items-center bg-bg py-20 md:sticky md:top-0 md:h-screen md:overflow-hidden md:py-0"
           >
             <div
               aria-hidden="true"
