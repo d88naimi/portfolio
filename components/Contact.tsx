@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 
@@ -8,11 +8,13 @@ const EMAIL = "d88naimi@gmail.com";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(EMAIL);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setCopied(false), 2000);
   };
 
   return (
