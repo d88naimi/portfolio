@@ -1,121 +1,79 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import { useState } from "react";
+import Link from "next/link";
+import Reveal from "@/components/motion/Reveal";
+
+const EMAIL = "d88naimi@gmail.com";
 
 export default function Contact() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const copyEmail = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigator.clipboard.writeText("d88naimi@gmail.com");
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(EMAIL);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section id="contact" ref={ref} className="relative py-32 px-6">
-      <p className="sr-only" role="status" aria-live="polite">
+    <section id="contact" aria-label="Contact" className="mx-auto max-w-[900px] px-6 pb-[60px] pt-[100px]">
+      <p role="status" aria-live="polite" className="sr-only">
         {copied ? "Email copied to clipboard" : ""}
       </p>
-      <div className="max-w-3xl mx-auto">
-        {/* Decorative top rule */}
-        <div className="flex items-center gap-4 mb-16">
-          <div className="h-px flex-1 bg-border" />
-          <span className="section-label">Get in touch</span>
-          <div className="h-px flex-1 bg-border" />
-        </div>
 
-        <div
-          className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-        >
-          <h2 className="font-display text-4xl md:text-6xl text-text mb-6 leading-tight">
-            Let&apos;s build something <em className="text-accent">together</em>
-          </h2>
-          <p className="font-sans text-base text-muted leading-relaxed max-w-xl mx-auto">
-            Open to senior frontend roles, consulting work, and interesting
-            collaborations. Based in San Marcos, CA — happy to work remote,
-            hybrid or onsite.
-          </p>
-        </div>
+      <Reveal className="mb-16 text-center">
+        <h2 className="m-0 mb-5 text-[clamp(2.25rem,5vw,4rem)] font-[650] tracking-[-0.02em] text-text">
+          Let&rsquo;s build something together.
+        </h2>
+        <p className="mx-auto max-w-[520px] text-[17px] leading-[1.6] text-muted">
+          Open to senior frontend roles, consulting work, and collaborations. Based in San
+          Marcos, CA. Remote, hybrid, or onsite all work for me.
+        </p>
+      </Reveal>
 
-        {/* Contact cards */}
-        <div
-          className={`grid sm:grid-cols-3 gap-4 mb-12 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      <div className="mb-12 grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+        <button
+          type="button"
+          onClick={copyEmail}
+          className="w-full rounded-md border border-hairline bg-surface p-6 text-left font-sans transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/20 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
         >
-          {[
-            {
-              label: "Email",
-              value: "d88naimi@gmail.com",
-              onClick: copyEmail,
-              href: "mailto:d88naimi@gmail.com",
-              note: copied ? "Copied!" : "Click to copy",
-            },
-            {
-              label: "LinkedIn",
-              value: "/in/davidnaimi",
-              href: "https://linkedin.com/in/davidnaimi",
-              external: true,
-              note: "View profile →",
-            },
-            {
-              label: "GitHub",
-              value: "d88naimi",
-              href: "https://github.com/d88naimi",
-              external: true,
-              note: "See code →",
-            },
-          ].map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.external ? "_blank" : undefined}
-              rel={c.external ? "noopener noreferrer" : undefined}
-              onClick={c.onClick}
-              aria-label={
-                c.external
-                  ? `${c.label}: ${c.value} (opens in new tab)`
-                  : `${c.label}: ${c.value}. Click to copy email address.`
-              }
-              className="block bg-surface border border-border p-6 hover:border-accent/40 hover:shadow-sm transition-all duration-200 group text-center"
-            >
-              <div className="section-label mb-2 group-hover:text-accent transition-colors">
-                {c.label}
-              </div>
-              <div className="font-sans text-sm text-text/70 mb-2 break-all">
-                {c.value}
-              </div>
-              <div
-                className="font-sans text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-hidden="true"
-              >
-                {c.note}
-              </div>
-            </a>
-          ))}
-        </div>
+          <div className="mb-2 text-xs uppercase tracking-[0.06em] text-muted2">Email</div>
+          <div className="mb-1 text-[15px] text-text">{EMAIL}</div>
+          <div className="text-[13px] text-accent">{copied ? "Copied!" : "Click to copy"}</div>
+        </button>
 
-        <div
-          className={`flex justify-center transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        <a
+          href="https://linkedin.com/in/davidnaimi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md border border-hairline bg-surface p-6 transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/20 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
         >
-          <a
-            href="mailto:d88naimi@gmail.com"
-            className="btn-primary text-sm px-12 py-4"
-          >
-            <span>Send a message</span>
-          </a>
-        </div>
+          <div className="mb-2 text-xs uppercase tracking-[0.06em] text-muted2">LinkedIn</div>
+          <div className="mb-1 text-[15px] text-text">/in/davidnaimi</div>
+          <div className="text-[13px] text-accent">View profile &#8599;</div>
+        </a>
+
+        <a
+          href="https://github.com/d88naimi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md border border-hairline bg-surface p-6 transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/20 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+        >
+          <div className="mb-2 text-xs uppercase tracking-[0.06em] text-muted2">GitHub</div>
+          <div className="mb-1 text-[15px] text-text">d88naimi</div>
+          <div className="text-[13px] text-accent">See code &#8599;</div>
+        </a>
+
+        <Link
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md border border-hairline bg-surface p-6 transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/20 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+        >
+          <div className="mb-2 text-xs uppercase tracking-[0.06em] text-muted2">Resume</div>
+          <div className="mb-1 text-[15px] text-text">PDF download</div>
+          <div className="text-[13px] text-accent">Get it &#8599;</div>
+        </Link>
       </div>
     </section>
   );
