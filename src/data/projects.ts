@@ -77,7 +77,7 @@ export const featuredProjects: FeaturedProject[] = [
     liveHref: "https://mobile-detailing-web.vercel.app/",
     githubHref: null,
     metrics: [
-      { value: "5.0", label: "Google rating across 140+ reviews" },
+      { value: "$25", label: "Deposit-based booking flow" },
       { value: "30-mi", label: "Service radius across North County SD" },
       { value: "3", label: "Service tiers with add-on options" },
     ],
