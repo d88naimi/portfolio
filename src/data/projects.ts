@@ -1,7 +1,7 @@
 export type ProjectMetric = { value: string; label: string };
 
 export type FeaturedProject = {
-  slug: "mavis" | "vehicleiq" | "encinitas-flowers";
+  slug: "mavis" | "vehicleiq" | "encinitas-flowers" | "ar-mobile-detailing" | "medinas-mobile-tire";
   label: string;
   tag: string;
   title: string;
@@ -65,6 +65,40 @@ export const featuredProjects: FeaturedProject[] = [
       { value: "Live", label: "Serving real customers today" },
     ],
   },
+  {
+    slug: "ar-mobile-detailing",
+    label: "AR Mobile Detailing",
+    tag: "Client · 04",
+    title: "AR Mobile Detailing",
+    description:
+      "Booking site for a North County San Diego mobile detailing business, with service-tier pricing and a deposit-based booking flow.",
+    stack: ["Next.js", "TypeScript", "Tailwind"],
+    caseStudyHref: null,
+    liveHref: "https://mobile-detailing-web.vercel.app/",
+    githubHref: null,
+    metrics: [
+      { value: "5.0", label: "Google rating across 140+ reviews" },
+      { value: "30-mi", label: "Service radius across North County SD" },
+      { value: "3", label: "Service tiers with add-on options" },
+    ],
+  },
+  {
+    slug: "medinas-mobile-tire",
+    label: "Medina's Mobile Tire Service",
+    tag: "Client · 05",
+    title: "Medina's Mobile Tire Service",
+    description:
+      "Booking site for a mobile tire and roadside service business in the LA/OC area, with a location-aware service request form.",
+    stack: ["Next.js", "TypeScript", "Tailwind"],
+    caseStudyHref: null,
+    liveHref: "https://mobile-tires-web.vercel.app/",
+    githubHref: null,
+    metrics: [
+      { value: "24/7", label: "Availability for roadside service" },
+      { value: "<35 min", label: "Typical response time" },
+      { value: "LA/OC", label: "Service area coverage" },
+    ],
+  },
 ];
 
 export type MoreProject = {
@@ -101,20 +135,6 @@ export const moreProjects: MoreProject[] = [
     summary:
       "A drag-and-drop tool that converts any PDF into Markdown instantly, with live preview and one-click download.",
     href: "https://pdf-to-markdown-roan.vercel.app/",
-    linkLabel: "Live",
-  },
-  {
-    title: "AR Mobile Detailing",
-    summary:
-      "Booking site for a North County San Diego mobile detailing business, with service-tier pricing and a deposit-based booking flow. Next.js, TypeScript, Tailwind.",
-    href: "https://mobile-detailing-web.vercel.app/",
-    linkLabel: "Live",
-  },
-  {
-    title: "Medina's Mobile Tire Service",
-    summary:
-      "Booking site for a mobile tire and roadside service business in the LA/OC area, with a location-aware service request form. Next.js, TypeScript, Tailwind.",
-    href: "https://mobile-tires-web.vercel.app/",
     linkLabel: "Live",
   },
 ];

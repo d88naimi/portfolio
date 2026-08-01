@@ -10,7 +10,7 @@ export default function SelectedWork() {
         <Reveal className="mb-6">
           <div className="mb-4 text-[13px] uppercase tracking-[0.08em] text-muted2">Selected work</div>
           <h2 className="m-0 max-w-[640px] text-[clamp(2rem,4vw,3.25rem)] font-[650] tracking-[-0.02em] text-text">
-            Three shipped products, told in depth.
+            Shipped products, told in depth.
           </h2>
         </Reveal>
       </section>
