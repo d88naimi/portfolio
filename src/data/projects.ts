@@ -103,4 +103,18 @@ export const moreProjects: MoreProject[] = [
     href: "https://pdf-to-markdown-roan.vercel.app/",
     linkLabel: "Live",
   },
+  {
+    title: "AR Mobile Detailing",
+    summary:
+      "Booking site for a North County San Diego mobile detailing business, with service-tier pricing and a deposit-based booking flow. Next.js, TypeScript, Tailwind.",
+    href: "https://mobile-detailing-web.vercel.app/",
+    linkLabel: "Live",
+  },
+  {
+    title: "Medina's Mobile Tire Service",
+    summary:
+      "Booking site for a mobile tire and roadside service business in the LA/OC area, with a location-aware service request form. Next.js, TypeScript, Tailwind.",
+    href: "https://mobile-tires-web.vercel.app/",
+    linkLabel: "Live",
+  },
 ];
