@@ -1,155 +1,116 @@
+// components/Hero.tsx
 "use client";
-import { useEffect, useState } from "react";
 
-const ROLES = [
-  "AI Engineer",
-  "Senior Engineer",
-  "React / Next.js",
-  "Web Developer",
-  "UI/UX Collaborator",
-];
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+const LINES = ["Frontend engineering,", "built like it matters."];
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [typing, setTyping] = useState(true);
-  const [charIndex, setCharIndex] = useState(0);
+  const reduced = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
+  const [pos, setPos] = useState({ mx: 0.5, my: 0.5 });
+  const rafPending = useRef(false);
 
   useEffect(() => {
-    const target = ROLES[roleIndex];
-    if (typing) {
-      if (charIndex < target.length) {
-        const t = setTimeout(() => {
-          setDisplayed(target.slice(0, charIndex + 1));
-          setCharIndex((c) => c + 1);
-        }, 60);
-        return () => clearTimeout(t);
-      } else {
-        const t = setTimeout(() => setTyping(false), 2400);
-        return () => clearTimeout(t);
-      }
-    } else {
-      if (charIndex > 0) {
-        const t = setTimeout(() => {
-          setDisplayed(target.slice(0, charIndex - 1));
-          setCharIndex((c) => c - 1);
-        }, 30);
-        return () => clearTimeout(t);
-      } else {
-        setRoleIndex((i) => (i + 1) % ROLES.length);
-        setTyping(true);
-      }
-    }
-  }, [charIndex, typing, roleIndex]);
+    const timer = setTimeout(() => setRevealed(true), reduced ? 0 : 150);
+    return () => clearTimeout(timer);
+  }, [reduced]);
+
+  useEffect(() => {
+    if (reduced) return;
+    const onMove = (e: MouseEvent) => {
+      if (rafPending.current) return;
+      rafPending.current = true;
+      requestAnimationFrame(() => {
+        setPos({ mx: e.clientX / window.innerWidth, my: e.clientY / window.innerHeight });
+        rafPending.current = false;
+      });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [reduced]);
+
+  const glowX = 30 + pos.mx * 40;
+  const glowY = 20 + pos.my * 30;
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-6 pt-28 pb-20 overflow-hidden">
-      {/* Decorative circle */}
+    <section
+      id="hero"
+      className="relative mx-auto flex min-h-screen max-w-[1200px] flex-col justify-center px-6 pb-[100px] pt-[160px]"
+    >
       <div
-        className="absolute pointer-events-none"
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
         style={{
-          width: 480,
-          height: 480,
-          borderRadius: "50%",
-          border: "1px solid rgba(196,98,45,0.12)",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -55%)",
-        }}
-      />
-      <div
-        className="absolute pointer-events-none hidden sm:block"
-        aria-hidden="true"
-        style={{
-          width: 680,
-          height: 680,
-          borderRadius: "50%",
-          border: "1px solid rgba(196,98,45,0.06)",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -55%)",
+          background: `radial-gradient(600px circle at ${glowX}% ${glowY}%, var(--color-accent-glow), transparent 60%)`,
+          opacity: revealed ? 1 : 0,
+          transition: reduced ? "none" : "opacity 900ms ease, background 300ms linear",
         }}
       />
 
-      {/* Location tag */}
-      <div className="mb-8 flex items-center justify-center gap-2 max-w-[22rem] sm:max-w-none text-center">
-        <span className="w-2 h-2 rounded-full bg-sage inline-block" />
-        <span className="font-sans text-[11px] sm:text-xs text-muted tracking-wide sm:tracking-widest uppercase leading-relaxed">
-          San Marcos, CA · Available for new roles
-        </span>
-      </div>
-
-      {/* Name — big serif display */}
-      <h1
-        className="font-display text-center font-normal text-text leading-tight mb-4"
-        style={{
-          fontSize: "clamp(3rem, 9vw, 6.5rem)",
-          letterSpacing: "-0.01em",
-        }}
-      >
-        David <em className="text-accent">Naimi</em>
-      </h1>
-
-      {/* Typewriter subtitle */}
-      <div className="h-8 flex items-center justify-center mb-7">
-        <span
-          className="font-sans text-base md:text-lg text-muted"
-          aria-live="polite"
-          aria-atomic="true"
+      <div className="relative z-10">
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 12 }}
+          animate={revealed ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: reduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8 flex items-center gap-2.5"
         >
-          {displayed}
-          <span className="text-accent animate-pulse" aria-hidden="true">
-            |
+          <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="text-[13px] uppercase tracking-[0.08em] text-muted2">
+            San Marcos, CA &middot; Available for new roles
           </span>
-        </span>
-      </div>
+        </motion.div>
 
-      {/* Divider */}
-      <div className="w-12 h-px bg-accent mb-7" />
+        <h1 className="m-0 mb-7 max-w-[900px] text-[clamp(2.75rem,7vw,6.5rem)] font-[650] leading-[1.05] tracking-[-0.03em] text-text">
+          {LINES.map((line, i) => (
+            <span key={line} className="block overflow-hidden pb-[0.05em] pt-[0.2em] -mt-[0.2em]">
+              <motion.span
+                className="inline-block will-change-transform"
+                initial={reduced ? false : { y: "110%", opacity: 0 }}
+                animate={revealed ? { y: "0%", opacity: 1 } : {}}
+                transition={{
+                  duration: reduced ? 0 : 0.9,
+                  delay: reduced ? 0 : (i * 90) / 1000,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
 
-      {/* Tagline */}
-      <p className="max-w-lg text-center text-text/60 font-sans text-base leading-relaxed mb-12">
-        7 years of web development experience building high-performance
-        interfaces with React, TypeScript, and Next.js. I turn complex problems
-        into clean, human-centered experiences.
-      </p>
+        <motion.p
+          initial={reduced ? false : { opacity: 0, y: 12 }}
+          animate={revealed ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.26, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 max-w-[560px] text-lg leading-[1.6] text-muted"
+        >
+          Seven years shipping React and Next.js products for real customers, from a check-in
+          platform running across 3,500 stores to AI tools people actually use. I care about the
+          details most teams skip.
+        </motion.p>
 
-      {/* CTA buttons */}
-      <div className="flex flex-wrap gap-4 justify-center mb-20">
-        <a href="#experience" className="btn-primary">
-          <span>View My Work</span>
-        </a>
-        <a href="#contact" className="btn-outline">
-          Get in Touch
-        </a>
-      </div>
-
-      {/* Stats */}
-      <dl className="flex flex-wrap gap-8 md:gap-20 justify-center">
-        {[
-          { value: "7+", label: "Years Experience" },
-          { value: "3,500+", label: "Locations Shipped" },
-          { value: "64%", label: "Faster Check-Ins" },
-          { value: "100", label: "NPS Score" },
-        ].map((s) => (
-          <div key={s.label} className="flex flex-col items-center gap-1.5">
-            <dd className="font-display text-3xl md:text-4xl text-accent italic">
-              {s.value}
-            </dd>
-            <dt className="font-sans text-xs text-muted tracking-wider uppercase">
-              {s.label}
-            </dt>
-          </div>
-        ))}
-      </dl>
-
-      {/* Scroll cue */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        aria-hidden="true"
-      >
-        <div className="w-px h-10 bg-gradient-to-b from-accent/40 to-transparent animate-bounce" />
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 12 }}
+          animate={revealed ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.34, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-wrap gap-4"
+        >
+          <a
+            href="#work"
+            className="rounded-pill bg-text px-7 py-3.5 text-[15px] font-semibold text-black transition-opacity duration-200 ease-[var(--ease-hover)] hover:opacity-85 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[3px]"
+          >
+            View the work
+          </a>
+          <a
+            href="#contact"
+            className="rounded-pill border border-hairline px-7 py-3.5 text-[15px] font-medium text-text transition-colors duration-200 ease-[var(--ease-hover)] hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[3px]"
+          >
+            Get in touch
+          </a>
+        </motion.div>
       </div>
     </section>
   );
